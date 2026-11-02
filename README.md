@@ -1,50 +1,49 @@
-# hnjg
 
-Spoof game hours on Discord. Sends fake game activity events to Discord's
-analytics endpoint using your account token.
+Spoofs game activity hours on Discord by submitting game session events to Discord's analytics endpoint.
 
 ---
 
-## requirements
+## Requirements
 
 - Python 3.10+
-- Windows (for fingerprint feature — rest works anywhere)
-- Discord token
-- Discord `cf_clearance` cookie
+- Windows *(fingerprint feature only — core functionality is cross-platform)*
+- A valid Discord account token
+- A valid Discord `cf_clearance` cookie
 
 ---
 
-## run
+## Usage
 
 ```
 python hnjg.py
 ```
 
-No installs needed.
+No external dependencies required.
+
+On first run, the tool will prompt for your token and cookie. Both are saved locally and reused on subsequent runs.
 
 ---
 
-## usage
+## Menu
 
-First run asks for your token and cookie — both saved locally for next time.
-
-Menu options:
-
-- **1 — claim games** — pick how many games and how many hours each, fires it
-- **2 — refresh auth** — update cookie or re-fetch token
-- **3 — set fingerprint** — ties activity to a real `.exe` (optional, Windows only)
-- **4 — exit**
+| Option | Description |
+|--------|-------------|
+| `1` — Claim games | Select the number of games and hours per game to submit |
+| `2` — Refresh auth | Update the cookie or re-fetch the analytics token |
+| `3` — Set fingerprint | Bind activity to a real executable *(optional, Windows only)* |
+| `4` — Exit | Close the application |
 
 ---
 
-## getting your cookie
+## Obtaining the Cookie
 
-Open Discord in browser → DevTools → Application → Cookies → `discord.com`
-→ copy the `cf_clearance` value.
+1. Open Discord in a browser.
+2. Open DevTools → **Application** → **Cookies** → `discord.com`
+3. Copy the value of `cf_clearance`.
 
 ---
 
-## notes
+## Notes
 
-- Token and cookie are saved plaintext in `hnjg_state.json` — don't commit it.
-- If you get 401/403, refresh your token or cookie from the menu.
+- The token and cookie are stored in plaintext within `hnjg_state.json`. Ensure this file is excluded from version control.
+- HTTP `401` or `403` responses indicate expired credentials. Use **option 2** from the menu to refresh.
