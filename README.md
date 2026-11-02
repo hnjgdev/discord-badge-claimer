@@ -15,7 +15,7 @@ Spoofs game activity hours on Discord by submitting game session events to Disco
 ## Usage
 
 ```
-python hnjg.py
+python discordclaimer.py
 ```
 
 No external dependencies required.
